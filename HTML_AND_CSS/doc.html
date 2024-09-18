@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Portal</title>
+  <style>
+    body, h1, h2, p, ul, ol, dl, dd, form, fieldset, input, textarea, select {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1, h2 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(90deg,#003366, #0044cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      
+    }
+
+    th {
+      background-color: #003366;
+      font-weight: bold;
+      color:white;
+    }
+
+    td {
+      vertical-align: top;
+    }
+
+    button {
+      background-color: #003366;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    form {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="number"], textarea {
+      width: calc(100% - 24px);
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      font-family: Arial, sans-serif;
+    }
+
+    input[type="number"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Doctor Portal</h1>
+  
+  <h2>Appointments</h2>
+  <table id="appointmentsTable">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Phone Number</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Appointments will be dynamically inserted here -->
+    </tbody>
+  </table>
+
+  <button id="logoutBtn">Logout</button>
+<!-- 
+  <h2>Write Medical Report</h2>
+  <form id="medicalReportForm" style="max-width: 400px;">
+    <label for="appointmentId">Appointment ID:</label>
+    <input type="number" id="appointmentId" name="appointmentId" required>
+    <br>
+    <label for="medicalReport">Medical Report:</label>
+    <textarea id="medicalReport" name="medicalReport" rows="4" required></textarea>
+    <br>
+    <button type="submit">Write Medical Report</button>
+  </form> -->
+
+  <script>
+ document.addEventListener('DOMContentLoaded', async function() {
+      const token = sessionStorage.getItem('accessToken');
+      const loggedInDoctorName = sessionStorage.getItem('name'); // Assuming you store the logged-in doctor's name
+      
+      console.log('Logged-in Doctor Name:', loggedInDoctorName); // Debugging log
+
+      if (!token) {
+        window.location.href = 'doclog.html'; // Redirect to login page if no token is found
+        return;
+      }
+      
+      try {
+        // Fetch doctor information
+        const response1 = await fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (!response1.ok) {
+          throw new Error('Failed to fetch doctor information');
+        }
+
+        const accountInfo = await response1.json();
+        console.log('Account Info:', accountInfo); // Debugging log
+        
+        // Find the logged-in doctor
+        const doctor = accountInfo.find(doc => doc.name === loggedInDoctorName);
+        if (!doctor) {
+          throw new Error('Logged-in doctor not found');
+        }
+
+        const name = doctor.name;
+
+        // Fetch appointments for the doctor
+        const response2 = await fetch(`http://backend-p7op.onrender.com/appointments/doctor/${name}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response2.ok) {
+          throw new Error('Failed to fetch appointments');
+        }
+
+        const appointments = await response2.json();
+        console.log('Appointments:', appointments);
+       
+        const appointmentsTableBody = document.querySelector('#appointmentsTable tbody');
+        appointmentsTableBody.innerHTML = ''; // Clear existing table rows
+        appointments.forEach(appointment => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${appointment.name}</td>
+            <td>${appointment.phone}</td>
+            <td>${new Date(appointment.date).toLocaleDateString()}</td>
+            <td><button onclick="writeMedicalReport(${appointment.id})">Write Report</button></td>
+          `;
+          appointmentsTableBody.appendChild(row);
+        });
+
+      } catch (error) {
+        console.error('Error:', error.message);
+        alert('Failed to fetch data. Please try again.');
+      }
+
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('username'); // Remove username from sessionStorage
+        sessionStorage.removeItem('name'); // Remove name from sessionStorage
+        window.location.href = 'doclog.html';
+      });
+    });
+
+    async function writeMedicalReport(appointmentId) {
+      const medicalReport = prompt('Enter medical report:');
+      if (!medicalReport) return;
+
+      const token = sessionStorage.getItem('accessToken');
+
+      try {
+        const response = await fetch(`http://backend-p7op.onrender.com/appointments/${appointmentId}/medical-report`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ medicalReport }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to write medical report');
+        }
+
+        alert('Medical report written successfully!');
+        // Refresh the appointments table after writing report
+        location.reload();
+
+      } catch (error) {
+        console.error('Error writing medical report:', error.message);
+        alert('Failed to write medical report. Please try again.');
+      }
+    }
+
+
+
+  </script>
+</body>
+</html>

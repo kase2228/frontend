@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Login</title>
+  <style>
+    body, h2, form, label, input, button {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #2980b9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      max-width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    #loginUsername{
+      width: 300px;
+    }
+    #loginPassword{
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color:  #00aaff;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color:  #00aaff; 
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: color 0.3s, transform 0.3s;
+}
+.home-button:hover {
+    color: #2980b9;
+    transform: translateY(-3px);
+  }
+  h2, label{
+    color:  #00aaff;
+  }
+  </style>
+</head>
+<header>
+  <a href="index.html" class="home-button">Home</a>
+</header>
+<body>
+  <div class="form-container">
+    <h2>Doctor Login</h2>
+    <form id="loginForm">
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" name="username" required>
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" name="password" required>
+      <button type="submit">Login</button>
+      <p class="error-message" id="loginErrorMessage"></p>
+    </form>
+    <p>Don't have an account? <a href="docsign.html">Sign Up</a></p>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+
+      loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+          const response = await fetch('http://backend-p7op.onrender.com/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+          }
+
+          const { access_token } = await response.json(); 
+          sessionStorage.setItem('accessToken', access_token);
+
+          // Fetch doctor information to get the name
+          const doctorResponse = await fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${access_token}`,
+            },
+          });
+
+          if (!doctorResponse.ok) {
+            throw new Error('Failed to fetch doctor information');
+          }
+
+          const accountInfo = await doctorResponse.json();
+          const doctor = accountInfo.find(doc => doc.username === username);
+          if (doctor) {
+            sessionStorage.setItem('name', doctor.name); // Store doctor's name in sessionStorage
+          }
+
+          window.location.href = 'doc.html'; // Redirect to doctor page after login
+          
+        } catch (error) {
+          console.error('Login error:', error.message);
+          const loginErrorMessageElement = document.getElementById('loginErrorMessage');
+          loginErrorMessageElement.textContent = 'Invalid username or password. Please try again.';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

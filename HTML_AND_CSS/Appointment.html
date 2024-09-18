@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="Stylesheet" href="Appointment.css">
+    <title>Appointment</title>
+</head>
+<body>
+    <div class="appointment-container">
+        <div class="image-placeholder">
+          <span><img id="img1" src="imgapp2.jpeg"></span>
+        </div>
+        <div class="form-container">
+          <h2 id="h2a">Book an Appointment</h2>
+          <form>
+            <input type="text" name="name" placeholder="Name">
+            
+            <select name="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              
+            </select>
+            <input type="email" name="email" placeholder="Email">
+            <input type="tel" name="phone" placeholder="Phone">
+            <input type="date" name="date">
+            <input type="time" name="time">
+            
+            <select name="doctors" >
+                <option value="Doctors">Doctors</option>
+              <option value="Dr. Tewodros Agonafer">Dr. Tewodros Agonafer (Nephrologist)</option>
+              <option value="Dr. Abebe Alemayehu">Dr. Abebe Alemayehu (Cardiologist)</option>
+              <option value="Dr. Hannan Abdulmalik">Dr. Hannan Abdulmalik (Cardiologist)</option>
+              <option value="Dr. Dinkye Abebe">Dr. Dinkye Abebe (Cardiologist)</option>
+            </select>
+
+            <select name="departments">
+              <option value="">Departments</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="neurology">Neurology</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="oncology">Oncology</option>
+              <option value="orthopedics">Orthopedics</option>
+            </select>
+            <textarea name="messages" placeholder="Messages"></textarea>
+            <button type="submit">SUBMIT</button>
+          </form>
+        </div>
+      </div>
+
+      <footer><h2 id="yo">Get our Great service!</h2></footer>
+</body>
+</html>

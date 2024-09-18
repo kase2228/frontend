@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MeddiCal</title>
+    <link rel="stylesheet" href="final.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        #loginbutton:hover{
+            border-radius: 50%;
+            transition: ease-in 0.3s;
+        }
+    </style>
+</head>
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo"><img src="logo edited.png"></div>
+            <div class="info" id="i1">
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>EMERGENCY: </span>
+                    <a href="tel:237681812255">(237) 681-812-255</a>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>WORK HOUR: </span>
+                    <span>09:00 - 20:00 Everyday</span>
+                </div>
+                <a href="https://www.google.com/maps/place/Menelik+II+Hospital,+Addis+Ababa/@9.0387305,38.7744135,19.25z/data=!4m6!3m5!1s0x164b8f790be3e4bb:0x7020dd3ca283f4b4!8m2!3d9.0389185!4d38.7750979!16s%2Fg%2F11bw21zpkk!5m1!1e1?entry=ttu"
+                    target="_blank">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>LOCATION: </span>
+                        <span>Yeka sub-city</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="AboutUs.html">About us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#doctors">Doctors</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="loginbutton"><a href="login.html" class="choose" style="color: aliceblue; text-decoration: none;">User login</a></button>
+                <button id="loginbutton"><a href="doc.html" class="choose" style="color: aliceblue; text-decoration: none;">Doctor login</a></button>
+                <button id="log" onclick="linkToReseption()"><a href="reception.html" class="choose" style="color: aliceblue; text-decoration: none;">Admin</a></button>
+                <a href="#appointment" class="appointment-btn">Appointment</a>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <p>Caring for Life</p>
+                <h1>Leading the Way in Medical Excellence</h1>
+                <a href="#services" class="btn">Our Services</a>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="header">
+                    <h2>WELCOME TO Minilik II Hospital</h2>
+                    <h1>A Great Place to Receive Care</h1>
+                    <p>Minilik II Hospital, one of the oldest in Ethiopia, is a public health care facility in Addis Ababa. Established in 1909 and named after Emperor Menelik II, it serves as a tertiary care hospital providing specialized services. A recent public-private partnership has helped the hospital open a kidney transplant and dialysis center
+                    </p>
+
+                </div>
+                <div class="image-section">
+                    <img src="groupof docs.jpg" alt="Group of Doctors">
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <h2>Care You Can Believe In</h2>
+            <h3>Our Services</h3>
+            <div class="services-container">
+
+                <div class="services-details">
+                    <h4>A passion for putting patients first.</h4>
+                    <ul>
+                        <li><span class="dot"></span> A Passion for Healing</li>
+                        <li><span class="dot"></span> All our best</li>
+                        <li><span class="dot"></span> A Legacy of Excellence</li>
+                        <li><span class="dot"></span> 5-Star Care</li>
+                        <li><span class="dot"></span> Believe in Us</li>
+                        <li><span class="dot"></span> Always Caring</li>
+                    </ul>
+                    <p>Minilik II Hospital, established in 1909, is one of the oldest hospitals in Ethiopia. It's a public health care facility located in Addis Ababa, serving as a tertiary care hospital that provides specialized services. The hospital is administered by the Addis Ababa City Administration and has a capacity of over 800 beds.</p>
+                    <p>The hospital offers a wide range of specialties including cardiology, neurology, oncology, and other fields. It is known for its tertiary eye care and forensic medicine services. A recent public-private partnership has helped the hospital open a kidney transplant and dialysis center.</p>
+                </div>
+                <div class="services-images">
+                    <img src="ourservice1.jpg" alt="Service Image 1">
+                    <img src="ourservice2.jpg" alt="Service Image 2">
+                </div>
+            </div>
+        </section>
+
+        <section id="specialties" class="specialties">
+            <h2>Always Caring</h2>
+            <h3>Our Specialties</h3>
+            <div class="specialties-grid">
+                <a href="services.html#Neurology">
+                    <div class="specialty-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Neurology</span>
+                    </div>
+                </a>
+                <a href="services.html#Bones">
+                    <div class="specialty-item active">
+                        <i class="fas fa-bone"></i>
+                        <span>Bones</span>
+                    </div>
+                </a>
+                <a href="services.html#Oncology">
+                    <div class="specialty-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Oncology</span>
+                    </div>
+                </a>
+                <a href="services.html#Otorhinolaryngology">
+                    <div class="specialty-item">
+                        <i class="fas fa-head-side-mask"></i>
+                        <span>Otorhinolaryngology</span>
+                    </div>
+                </a>
+                <a href="services.html#Ophthalmology">
+                    <div class="specialty-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Ophthalmology</span>
+                    </div>
+                </a>
+                <a href="services.html#Cardiovascular">
+                    <div class="specialty-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Cardiovascular</span>
+                    </div>
+                </a>
+                <a href="services.html#Pulmonology">
+                    <div class="specialty-item">
+                        <i class="fas fa-lungs"></i>
+                        <span>Pulmonology</span>
+                    </div>
+                </a>
+                <a href="services.html#RenalMedicine">
+                    <div class="specialty-item">
+                        <i class="fas fa-kidneys"></i>
+                        <span>Renal Medicine</span>
+                    </div>
+                </a>
+                <a href="services.html#Gastroenterology">
+                    <div class="specialty-item">
+                        <i class="fas fa-stomach"></i>
+                        <span>Gastroenterology</span>
+                    </div>
+                </a>
+                <a href="services.html#Urology">
+                    <div class="specialty-item">
+                        <i class="fas fa-venus-mars"></i>
+                        <span>Urology</span>
+                    </div>
+                </a>
+                <a href="services.html#Dermatology">
+                    <div class="specialty-item">
+                        <i class="fas fa-allergies"></i>
+                        <span>Dermatology</span>
+                    </div>
+                </a>
+                <a href="services.html#Gynaecology">
+                    <div class="specialty-item">
+                        <i class="fas fa-venus"></i>
+                        <span>Gynaecology</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+
+        <section id="appointment" class="appointment">
+            <div class="appointment-container">
+                <div class="appointment-content">
+                    <h2>Book an Appointment</h2>
+                    <p>Adjacent to this text, you'll find our user-friendly appointment booking form. This form is designed to make scheduling your visit to Minilik II Hospital as easy as possible. Here's a brief overview of the form fields:</p>
+                </div>
+                <div class="appointment-form">
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Name" required id="name">
+                            <select name="gender" id="gender" required>
+                                <option value="">Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input id="email" type="email" name="email" placeholder="Email" required>
+                            <input id="phone" type="tel" name="phone" placeholder="Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <input id="date" type="date" name="date" required>
+                            <input id="time" type="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="doctor" name="doctor" required>
+                                <option value="">Select Doctor</option>
+                            </select>
+                            
+                            <select id="department" name="department" required>
+                                <option value="">Department</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="oncology">Oncology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="messages" name="messages" placeholder="Message"></textarea>
+                        </div>
+                        <button type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="doctors-section" id="doctors">
+                <h2>Trusted Care</h2>
+                <h3>Our Doctors</h3>
+                <div class="doctors-container" id="doctors-container">
+                    <div class="doctor-card">
+                        <img src="doc4.jpg" alt="Doctor 1">
+                        <div class="doctor-info">
+                            <h4>Tsegaab Alemu</h4>
+                            <p>Cardiologist</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-linkedin" aria-label="LinkedIn"></i></a>
+                                <a href="#"><i class="fab fa-facebook" aria-label="Facebook"></i></a>
+                                <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                            </div>
+                            <a href="viewprofile1.html"><button>View Profile</button></a>
+                        </div>
+                    </div>
+                    <div class="doctor-card">
+                        <img src="doc1.jpg" alt="Doctor 1">
+                        <div class="doctor-info">
+                            <h4>Kassahun Belachew</h4>
+                            <p>Neurology</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-linkedin" aria-label="LinkedIn"></i></a>
+                                <a href="#"><i class="fab fa-facebook" aria-label="Facebook"></i></a>
+                                <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                            </div>
+                            <a href="veiwprofile2.html"><button>View Profile</button></a>
+                        </div>
+                    </div>
+                    <div class="doctor-card">
+                        <img src="doc2.jpg" alt="Doctor 1">
+                        <div class="doctor-info">
+                            <h4>Yeabsira Samuel</h4>
+                            <p>Pediatrics</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-linkedin" aria-label="LinkedIn"></i></a>
+                                <a href="#"><i class="fab fa-facebook" aria-label="Facebook"></i></a>
+                                <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                            </div>
+                            <a href="viewprofile3.html"><button>View Profile</button></a>
+                        </div>
+                    </div>
+                    <div class="doctor-card">
+                        <img src="doc3.jpg" alt="Doctor 1">
+                        <div class="doctor-info">
+                            <h4>Natnael Nigatu</h4>
+                            <p>Dermatology</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-linkedin" aria-label="LinkedIn"></i></a>
+                                <a href="#"><i class="fab fa-facebook" aria-label="Facebook"></i></a>
+                                <a href="#"><i class="fab fa-instagram" aria-label="Instagram"></i></a>
+                            </div>
+                            <a href="viewprofile4.html"><button>View Profile</button></a>
+                        </div>
+                    </div>
+
+                   
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="news-section" id="news">
+            <h2 class="section-title">Better Information, Better Health</h2>
+            <h3 class="section-subtitle">News</h3>
+            <div class="news-cards" id="news-cards">
+                <div class="news-card">
+                    <img src="derma.jpg" alt="News Image" class="news-image">
+                    <div class="news-content">
+                        <p class="news-date">Monday 05, September 2021</p>
+                        <h4 class="news-title"><h4>New Dermatology Clinic Opens in Addis Ababa</h4>
+                        <p>Dr. Natnael Nigatu, a renowned dermatologist, has opened a new clinic in Addis Ababa. The clinic offers state-of-the-art facilities and the latest treatments for various skin conditions.</p></h4>
+                        <div class="news-meta">
+                            <span class="news-views"><i class="fas fa-eye"></i> <span
+                                    class="view-count">68</span></span>
+                            <span class="news-likes"><i class="fas fa-heart"></i> <span
+                                    class="like-count">86</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="derma.jpg" alt="News Image" class="news-image">
+                    <div class="news-content">
+                        <p class="news-date">Monday 05, September 2021</p>
+                        <h4 class="news-title">Skin Care Awareness Campaign Launched</h4>
+                        <p>A new campaign promoting skin care awareness has been launched in Addis Ababa, with free skin checks being offered at various locations throughout the city.</p>
+                        <div class="news-meta">
+                            <span class="news-views"><i class="fas fa-eye"></i> <span
+                                    class="view-count">68</span></span>
+                            <span class="news-likes"><i class="fas fa-heart"></i> <span
+                                    class="like-count">86</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="derma.jpg" alt="News Image" class="news-image">
+                    <div class="news-content">
+                        <p class="news-date">Monday 05, September 2021</p>
+                        <h4 class="news-title">Dermatology Conference to be Held in Addis Ababa</h4>
+                        <p>The annual Dermatology Conference will be held in Addis Ababa this year, attracting experts in the field from around the world.</p>
+                        <div class="news-meta">
+                            <span class="news-views"><i class="fas fa-eye"></i> <span
+                                    class="view-count">68</span></span>
+                            <span class="news-likes"><i class="fas fa-heart"></i> <span
+                                    class="like-count">86</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="derma.jpg" alt="News Image" class="news-image">
+                    <div class="news-content">
+                        <p class="news-date">Monday 05, September 2021</p>
+                        <h4 class="news-title">New Skin Cancer Treatment Shows Promise</h4>
+                        <p>A new treatment for skin cancer, currently being trialed in Addis Ababa, has shown promising results in early tests.</p>
+                        <div class="news-meta">
+                            <span class="news-views"><i class="fas fa-eye"></i> <span
+                                    class="view-count">68</span></span>
+                            <span class="news-likes"><i class="fas fa-heart"></i> <span
+                                    class="like-count">86</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="pagination">
+                <span class="pagination-dot active" onclick="showSlide(1)"></span>
+                <span class="pagination-dot" onclick="showSlide(2)"></span>
+                <span class="pagination-dot" onclick="showSlide(3)"></span>
+            </div>
+        </section>
+
+
+        <section class="contact-section" id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <h3 class="section-subtitle">Contact</h3>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt" style="color: rgb(27, 90, 226);"></i>
+                    </div>
+                    <h4>Emergency</h4>
+                    <p>(237) 681-812-255</p>
+                    <p>(237) 666-331-894</p>
+                </div>
+                <div class="contact-card dark-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt" style="color: white;"></i>
+                    </div>
+                    <h4>Location</h4>
+                    <p>Addis Ababa</p>
+                    <p>Ethiopia</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope" style="color: rgb(27, 90, 226);"></i>
+                    </div>
+                    <h4>Email</h4>
+                    <p>minilikhospital@gmail.com</p>
+                    <p>minilikhosp@gmail.com</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock" style="color: rgb(27, 90, 226);"></i>
+                    </div>
+                    <h4>Working Hours</h4>
+                    <p>Mon-Sat 09:00-20:00</p>
+                    <p>Sunday Emergency only</p>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="map-section">
+                <a href="https://www.google.com/maps/place/Menelik+II+Hospital,+Addis+Ababa/@9.0387305,38.7744135,19.25z/data=!4m6!3m5!1s0x164b8f790be3e4bb:0x7020dd3ca283f4b4!8m2!3d9.0389185!4d38.7750979!16s%2Fg%2F11bw21zpkk!5m1!1e1?entry=ttu"
+                    target="_blank">
+                    <img src="map.png" alt="Map Image">
+                </a>
+            </div>
+            <div class="other-content">
+                <div class="footer-section">
+                    <h2 class="footer-title">Minilik</h2>
+                    <p class="footer-subtitle">Leading the Way in Medical Excellence, Trusted Care.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-heading">Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#appointment">Appointment</a></li>
+                        <li><a href="#doctors">Doctors</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="AboutUs.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <p>Call: (237) 681-812-255</p>
+                    <p><a href="#">Email: minilikhosp@gmail.com</a></p>
+                    <p>Address: Addis Ababa</p>
+                    <p>Ethiopia</p>
+                </div>
+                <div class="footer-section" id="searchengine">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <form class="newsletter-form" action="http://localhost:3000/newsletter/subscribe" method="POST">
+                        <input type="email" placeholder="Enter your email address">
+                        <button type="submit">➔</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Minilik. All Rights Reserved by PNTEC-LTD</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

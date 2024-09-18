@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal</title>
+    <link rel="stylesheet" href="portalpage.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
+        #username {
+            margin-right: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            background-color: #003366;
+            border-top-right-radius: 90px;
+            border-bottom-right-radius: 90px;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        nav ul li a:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 100%; 
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .modal-backdrop {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+            animation: fadeIn 0.5s; 
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s; 
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes slideIn {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 48%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    width: 48%;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Headings */
+h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+    }
+}
+h1{
+  color:#003366
+}
+#logoutBtn{
+  width:90px;
+  background-color: #003366;
+  color: white;
+  border-radius: 7px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <button id="logoutBtn">Logout</button>
+    </header>
+    <div class="container">
+        <header>
+            <h1>Patient Portal</h1>
+            <h1 id="username"></h1>
+        </header>
+
+        <div class="content">
+            <nav>
+                <ul>
+                    <li><a href="portalpage.html" data-tooltip="Go to Dashboard"><i class="fas fa-tachometer-alt"></i> D</a></li>
+                    <li><a href="#appointments" id="toggleAppointmentForm" data-tooltip="Appointments"><i class="fas fa-brain"></i> A</a></li>
+                    <li><a href="#reports" id="toggleRecordsForm" data-tooltip="Reports"><i class="fas fa-file-medical-alt"></i> R</a></li>
+                    <!-- <li><a href="#medical-history" id="toggleMedicalHistory" data-tooltip="Medical History"><i class="fas fa-history"></i> MH</a></li> -->
+                    <li><a href="#appointment-history" id="toggleAppointmentHistory" data-tooltip="Appointment History"><i class="fas fa-clipboard-list"></i> AL</a></li>
+                    <!-- <li><a href="#contact"><i class="fas fa-envelope"></i> C</a></li> -->
+                </ul>
+            </nav>
+
+            <main>
+                <div class="dashboard-grid">
+                    <section class="upcoming-events">
+                        <h3>Upcoming Appointments</h3>
+                        <ul id="upcoming-appointments-list">
+                          <!-- Appointments will be dynamically added here -->
+                      </ul>
+                    </section>
+
+                    <!-- <section class="current-projects">
+                        <h3>Current Health Plans</h3>
+                        <ul>
+                            <li>Healthy Diet Plan - Started on June 20, 2024, ends on June 30, 2024</li>
+                            <li>Exercise Routine - Started on June 21, 2024, ends on July 21, 2024</li>
+                        </ul>
+                    </section> -->
+
+                    <!-- <section class="medical-history" >
+                        <h3>Medical History Tracker</h3>
+                        <ul>
+                            <li><strong>May 20, 2024:</strong> Annual Physical Examination</li>
+                            <li><strong>April 15, 2024:</strong> Blood Pressure Check</li>
+                            <li><strong>March 10, 2024:</strong> Allergy Test</li>
+                        </ul>
+                    </section> -->
+
+                    <section class="appointment-history">
+                      <h3>Appointment History</h3>
+                      <ul id="appointment-history">
+                          <!-- List items will be populated here -->
+                      </ul>
+                  </section>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+            <p>© 2024 Patient Portal. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Appointment Scheduling Modal -->
+    <div id="appointmentModal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="close" id="closeAppointmentForm">&times;</span>
+            <h3>Schedule an Appointment</h3>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Name" required id="name">
+                    <select name="gender" id="gender" required>
+                        <option value="">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input id="email" type="email" name="email" placeholder="Email" required>
+                    <input id="phone" type="tel" name="phone" placeholder="Phone" required>
+                </div>
+                <div class="form-group">
+                    <input id="date" type="date" name="date" required>
+                    <input id="time" type="time" name="time" required>
+                </div>
+                <div class="form-group">
+                  <select id="doctor" name="doctor" required>
+                    <option value="">Select Doctor</option>
+                </select>
+                    <select id="department" name="department" required>
+                        <option value="">Department</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="oncology">Oncology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="messages" name="messages" placeholder="Message"></textarea>
+                </div>
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Medical Records Modal -->
+    <div id="recordsModal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="close" id="closeRecordsForm">&times;</span>
+            <h3>Medical Records</h3>
+            <ul id="medicalRecordsList"></ul>
+        </div>
+    </div>
+
+    <!-- Medical History Modal -->
+    <div id="medicalHistoryModal" class="modal-backdrop">
+        <!-- <div class="modal-content">
+            <span class="close" id="closeMedicalHistory">&times;</span>
+            <h3>Medical History</h3>
+            <ul id="medicalHistoryList"></ul>
+        </div> -->
+    </div>
+
+    <!-- Appointment History Modal -->
+    <div id="appointmentHistoryModal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="close" id="closeAppointmentHistory">&times;</span>
+            <h3>Appointment List</h3>
+            <ul id="appointmentHistoryList"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+        const token = sessionStorage.getItem('token');
+        const email = sessionStorage.getItem('email'); // Fetch the email from sessionStorage
+        fetchupcomingAppointmentsByEmail(email);
+        fetchAppointmentshistoryByEmail(email);
+  if (!token) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  try {
+    const response = await fetch('http://backend-p7op.onrender.com/patients/account', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch account details');
+    }
+
+    const accountInfo = await response.json();
+    
+    // Safely accessing username
+    const username = accountInfo.username || 'No username found';
+    document.getElementById('username').innerText = `hi ${username}`;
+    
+  } catch (error) {
+    alert(error.message);
+  }
+
+  function initializeFormSubmission() {
+    const form = document.querySelector('#appointmentForm'); // Selecting the appointment form
+    form.addEventListener('submit', handleFormSubmit); // Adding submit event listener
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(event.target); // Get form data
+    const data = Object.fromEntries(formData.entries()); // Convert FormData to object
+
+    fetch('http://backend-p7op.onrender.com/appointments/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')} `// Include authorization token
+      },
+      body: JSON.stringify(data) // Convert data to JSON string
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Appointment scheduled successfully!"); 
+        event.target.reset(); // Reset form after successful submission
+        appointmentModal.style.display = 'none'; // Close the modal
+      } else {
+        return response.json().then(errorData => {
+          alert('Error: ' + JSON.stringify(errorData)); // Display error message
+        });
+      }
+    })
+    .catch(error => {
+      alert("Fetch error: " + error); // Display fetch error
+    });
+  }
+
+  initializeFormSubmission(); // Initialize form submission handling
+
+  // Get the modals
+  const appointmentModal = document.getElementById('appointmentModal');
+  const recordsModal = document.getElementById('recordsModal');
+  // const medicalHistoryModal = document.getElementById('medicalHistoryModal');
+  const appointmentHistoryModal = document.getElementById('appointmentHistoryModal');
+
+  // Get the button that opens the appointment form
+  const toggleAppointmentFormBtn = document.getElementById('toggleAppointmentForm');
+  const toggleRecordsFormBtn = document.getElementById('toggleRecordsForm');
+  // const toggleMedicalHistoryBtn = document.getElementById('toggleMedicalHistory');
+  const toggleAppointmentHistoryBtn = document.getElementById('toggleAppointmentHistory');
+
+  // Get the <span> elements that close the modals
+  const closeAppointmentFormSpan = document.getElementById('closeAppointmentForm');
+  const closeRecordsFormSpan = document.getElementById('closeRecordsForm');
+  // const closeMedicalHistorySpan = document.getElementById('closeMedicalHistory');
+  const closeAppointmentHistorySpan = document.getElementById('closeAppointmentHistory');
+
+  // When the user clicks the button, open the appointment form modal
+  toggleAppointmentFormBtn.onclick = function() {
+    appointmentModal.style.display = 'block';
+  }
+
+  // When the user clicks the button, open the medical records modal
+  toggleRecordsFormBtn.onclick = function() {
+    recordsModal.style.display = 'block';
+    fetchReportsByEmail(email);
+  }
+
+  // When the user clicks the button, open the medical history modal
+  // toggleMedicalHistoryBtn.onclick = function() {
+  //   medicalHistoryModal.style.display = 'block';
+  // }
+
+  // When the user clicks the button, open the appointment history modal
+  toggleAppointmentHistoryBtn.onclick = function() {
+    appointmentHistoryModal.style.display = 'block';
+    fetchAppointmentsByEmail(email); // Use the email from sessionStorage
+  }
+  // When the user clicks on <span> (x), close the modals
+    closeAppointmentFormSpan.onclick = function() {
+    appointmentModal.style.display = 'none';
+  }
+
+  closeRecordsFormSpan.onclick = function() {
+    recordsModal.style.display = 'block';
+  }
+
+  // closeMedicalHistorySpan.onclick = function() {
+  //   medicalHistoryModal.style.display = 'none';
+  // }
+
+  closeAppointmentHistorySpan.onclick = function() {
+    appointmentHistoryModal.style.display = 'none';
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == appointmentModal) {
+      appointmentModal.style.display = 'none';
+    }
+    if (event.target == recordsModal) {
+      recordsModal.style.display = 'none';
+    }
+    if (event.target == medicalHistoryModal) {
+      medicalHistoryModal.style.display = 'none';
+    }
+    if (event.target == appointmentHistoryModal) {
+      appointmentHistoryModal.style.display = 'none';
+    }
+  }
+
+  const logoutBtn = document.getElementById('logoutBtn');
+  logoutBtn.addEventListener('click', () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('email'); // Remove email from sessionStorage
+    window.location.href = 'login.html';
+  });
+
+  async function fetchAppointmentsByEmail(email) {
+    try {
+      const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const appointments = await response.json();
+     
+//       const newapps =  appointments.slice(-3)
+// //       appointments.slice(0, 3).forEach(appointment => {
+// //   alert(`Appointment ID: ${appointment.id}\nDate: ${appointment.date}\nDoctor: ${appointment.doctor}`);
+// // });
+      
+
+      // Select the element to display appointments
+      const appointmentHistoryList = document.getElementById('appointmentHistoryList');
+
+      // Clear the existing list
+      appointmentHistoryList.innerHTML = '';
+
+      // Check if there are any appointments
+      if (appointments.length === 0) {
+        appointmentHistoryList.innerHTML = '<li>No appointments found.</li>';
+        return;
+      }
+
+      // Append each appointment to the list
+      appointments.forEach(appointment => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Appointment on ${appointment.date} with ${appointment.doctor}. your medical report: ${appointment.medicalReport}`;
+        appointmentHistoryList.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+      const appointmentHistoryList = document.getElementById('appointmentHistoryList');
+      appointmentHistoryList.innerHTML = '<li>Error fetching appointments. Please try again later.</li>';
+    }
+  }
+});
+
+
+async function fetchReportsByEmail(email) {
+    try {
+      const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const appointments = await response.json();
+
+      // Select the element to display appointments
+      const appointmentHistoryList = document.getElementById('medicalRecordsList');
+
+      // Clear the existing list
+      appointmentHistoryList.innerHTML = '';
+
+      // Check if there are any appointments
+      if (appointments.length === 0) {
+        appointmentHistoryList.innerHTML = '<li>No reports found.</li>';
+        return;
+      }
+
+      // Append each appointment to the list
+      appointments.forEach(appointment => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Appointment on ${appointment.date} your medical report: ${appointment.medicalReport}`;
+        appointmentHistoryList.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+      const appointmentHistoryList = document.getElementById('medicalRecordsList');
+      appointmentHistoryList.innerHTML = '<li>Error fetching appointments. Please try again later.</li>';
+    }
+  }
+   
+initializeDoctorDropdown();
+function initializeDoctorDropdown() {
+    const doctorSelect = document.getElementById('doctor');
+
+    fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch doctors');
+        }
+        return response.json();
+    })
+    .then(doctors => {
+        doctors.forEach(doctor => {
+            const option = document.createElement('option');
+            option.value = doctor.name;
+            option.text = `${doctor.name} (${doctor.speciality})`;
+            doctorSelect.appendChild(option);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching doctors:', error.message);
+        alert('Failed to fetch doctors. Please try again.');
+    });
+}
+    
+
+
+
+async function fetchupcomingAppointmentsByEmail(email) {
+    try {
+        const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+        let appointments = await response.json();
+        
+        // Filter appointments that have no medical report and are in the future
+        const now = new Date();
+        appointments = appointments.filter(appointment => !appointment.medicalReport && new Date(appointment.date) > now);
+        
+        // Select the element to display appointments
+        const appointmentHistoryList = document.getElementById('upcoming-appointments-list');
+
+        // Clear the existing list
+        appointmentHistoryList.innerHTML = '';
+
+        // Check if there are any filtered appointments
+        if (appointments.length === 0) {
+            appointmentHistoryList.innerHTML = '<li>No upcoming appointments without medical reports found.</li>';
+            return;
+        }
+
+        // Show only the last three appointments
+        appoints = appointments.slice(-3); // Get the last three appointments
+
+        // Append each appointment to the list
+        appoints.forEach(appointment => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Appointment on ${appointment.date} with ${appointment.doctor}. `;
+            appointmentHistoryList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error fetching upcoming appointments:', error);
+        const appointmentHistoryList = document.getElementById('upcoming-appointments-list');
+        appointmentHistoryList.innerHTML = '<li>Error fetching upcoming appointments. Please try again later.</li>';
+    }
+}
+
+
+async function fetchAppointmentshistoryByEmail(email) {
+    try {
+        const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+        let appointments = await response.json();
+        
+        // Filter appointments with medical reports
+        appointments = appointments.filter(appointment => appointment.medicalReport);
+
+        // Select the element to display appointments
+        const appointmentHistoryList = document.getElementById('appointment-history');
+
+        // Clear the existing list
+        appointmentHistoryList.innerHTML = '';
+
+        // Check if there are any appointments with reports
+        if (appointments.length === 0) {
+            appointmentHistoryList.innerHTML = '<li>No appointments with medical reports found.</li>';
+            return;
+        }
+
+        // Show only the filtered appointments
+        appointments.forEach(appointment => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Appointment on ${appointment.date} with ${appointment.doctor}. `;
+            appointmentHistoryList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error fetching appointments:', error);
+        const appointmentHistoryList = document.getElementById('appointmentHistoryList');
+        appointmentHistoryList.innerHTML = '<li>Error fetching appointments. Please try again later.</li>';
+    }
+}
+
+
+    </script>
+</body>
+</html>

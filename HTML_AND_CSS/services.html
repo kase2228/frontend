@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Details On Services
+    </title>
+    <meta name="description" content="This page provides details on various medical services including X-Ray, Cardiology, Pediatric, and Genetic services.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .services-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        .service-card {
+            flex: 0 0 auto;
+            width: 500px;
+            height: 500px;
+            margin-right: 20px;
+            background:white;
+            box-shadow: 0px 0px 10px #aaa;
+            padding: 20px;
+            text-align: center;
+            color:#00509e;
+            transition: all 0.3s ease; 
+        }
+        .service-card:hover {
+            background-color: #00509e; 
+            color: white;
+        }
+        .service-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 10px;
+        }
+        .service-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            border: 2px solid #00509e;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var hash = window.location.hash;
+            var element = document.getElementById(hash.substring(1)); 
+            if (element) {
+                element.classList.add("highlight");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="services-container">
+        <div class="service-card" id="Neurology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="X-Ray Icon" class="service-icon">
+            <div class="service-name">Neurology</div>
+            <p>Neurology involves the diagnosis and treatment of disorders of the nervous system. This includes diseases of the brain, spinal cord, nerves, and muscles.</p>
+        </div>
+        <div class="service-card" id="Bones">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="MRI Icon" class="service-icon">
+            <div class="service-name">Bones</div>
+            <p>Orthopedics is the medical specialty that focuses on injuries and diseases of your body's musculoskeletal system. This includes bones, joints, ligaments, tendons, and muscles.</p>
+        </div>
+        <div class="service-card" id="Oncology">
+            <img  src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Pediatric Icon" class="service-icon">
+            <div class="service-name">Oncology</div>
+            <p>Oncology is a branch of medicine that deals with the prevention, diagnosis, and treatment of cancer.</p>
+        </div>
+        <div class="service-card" id="Otorhinolaryngology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Otorhinolaryngology</div>
+            <p>Otorhinolaryngology, also known as ENT, is the branch of medicine that specializes in the diagnosis and treatment of disorders of the ear, nose, and throat.</p>
+        </div>
+
+        <div class="service-card" id="Ophthalmology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Ophthalmology</div>
+            <p>Ophthalmology is a branch of medicine and surgery which deals with the diagnosis and treatment of eye disorders.</p>
+        </div>
+
+        <div class="service-card" id="Cardiovascular">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Cardiovasculars</div>
+            <p>Cardiology is a branch of medicine that deals with the disorders of the heart as well as some parts of the cardiovascular system.</p>
+        </div>
+
+        <div class="service-card" id="Pulmonology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Pulmonology</div>
+            <p>Pulmonology is a medical specialty that deals with diseases involving the respiratory tract.</p>
+        </div>
+
+        <div class="service-card" id="RenalMedicine">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Renal Medicine</div>
+            <p>Renal medicine also called, Nephrology is a specialty of medicine and pediatrics that concerns itself with the kidneys: the study of normal kidney function and kidney disease, the preservation of kidney health, and the treatment of kidney disease, from diet and medication to renal replacement therapy.</p>
+        </div>
+
+        <div class="service-card" id="Gastroenterology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Gastroenterology</div>
+            <p>Gastroenterology is the branch of medicine focused on the digestive system and its disorders.</p>
+        </div>
+
+        <div class="service-card" id="Urology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Urology</div>
+            <p>Urology is a part of health care that deals with diseases of the male and female urinary tract (kidneys, ureters, bladder and urethra). It also deals with the male organs that are able to make babies (penis, testes, scrotum, prostate, etc.).</p>
+        </div>
+
+        <div class="service-card" id="Dermatology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Dermatology</div>
+            <p>Dermatology is the branch of medicine dealing with the skin, nails, hair and its diseases. It is a specialty with both medical and surgical aspects.</p>
+        </div>
+
+        <div class="service-card" id="Gynaecology">
+            <img src="https://cdn1.iconfinder.com/data/icons/medical-services-4/64/x-07-256.png" alt="Genetic Icon" class="service-icon">
+            <div class="service-name">Gynaecology</div>
+            <p>Gynaecology or gynecology is the medical practice dealing with the health of the female reproductive system (uterus and ovaries).</p>
+        </div>
+    </div>
+</body>
+</html>

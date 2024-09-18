@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo_top.png" type="image/png" sizes="16x16">
+    <title>Admin Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2980b9; 
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            overflow: hidden; 
+        }
+        .container {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            animation: fadeIn 1s ease-in-out;
+            position: relative; 
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+        form input {
+            height: 2.5em;
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            padding: 0 10px;
+            background-color: #f9f9f9;
+            font-size: 1em;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        input::placeholder {
+            color: #888;
+        }
+        input:focus {
+            border-color: #1e90ff;
+            background-color: #fff;
+            outline: none;
+        }
+        .button {
+            width: 100%;
+            height: 2.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            background-color: #1e90ff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #1c86ee;
+            transform: scale(1.05);
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 0.9em;
+            height: 1.2em;
+            color: #d32f2f;
+        }
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .home-link:hover {
+            color: #1e90ff;
+        }
+        h2{
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="home-link">Home</a>
+    </header>
+    <div class="container">
+        <form id="codeForm">
+            <h2>Admin Login</h2>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="code" name="code" placeholder="Password" required>
+            <p id="message"></p>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const passcode = document.getElementById('code').value;
+            const adminName = document.getElementById('username').value;
+
+            if (!passcode || !adminName) {
+                document.getElementById('message').innerText = 'Please enter both username and password';
+                document.getElementById('message').style.color = '#d32f2f';
+                return;
+            }
+
+            const response = await fetch('http://backend-p7op.onrender.com/auth/verify-code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ passcode, adminName })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                sessionStorage.setItem('token', data.access_token);
+                document.getElementById('message').innerText = 'Login successful';
+                document.getElementById('message').style.color = '#1abc9c';
+                window.location.href = 'reception.html';
+            } else {
+                document.getElementById('message').innerText = 'Invalid username or password';
+                document.getElementById('message').style.color = '#d32f2f';
+            }
+        });
+    </script>
+</body>
+</html>
