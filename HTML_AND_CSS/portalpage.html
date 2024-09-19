@@ -311,7 +311,7 @@ h1{
   }
   
   try {
-    const response = await fetch('http://backend-p7op.onrender.com/patients/account', {
+    const response = await fetch('https://backend-p7op.onrender.com/patients/account', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -343,7 +343,7 @@ h1{
     const formData = new FormData(event.target); // Get form data
     const data = Object.fromEntries(formData.entries()); // Convert FormData to object
 
-    fetch('http://backend-p7op.onrender.com/appointments/post', {
+    fetch('https://backend-p7op.onrender.com/appointments/post', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -450,7 +450,7 @@ h1{
 
   async function fetchAppointmentsByEmail(email) {
     try {
-      const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+      const response = await fetch(`https://backend-p7op.onrender.com/appointments/email/${email}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -491,7 +491,7 @@ h1{
 
 async function fetchReportsByEmail(email) {
     try {
-      const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+      const response = await fetch(`https://backend-p7op.onrender.com/appointments/email/${email}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -526,7 +526,7 @@ initializeDoctorDropdown();
 function initializeDoctorDropdown() {
     const doctorSelect = document.getElementById('doctor');
 
-    fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+    fetch('https://backend-p7op.onrender.com/doctors/doctor', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -557,7 +557,7 @@ function initializeDoctorDropdown() {
 
 async function fetchupcomingAppointmentsByEmail(email) {
     try {
-        const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+        const response = await fetch(`https://backend-p7op.onrender.com/appointments/email/${email}`);
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }
@@ -598,7 +598,7 @@ async function fetchupcomingAppointmentsByEmail(email) {
 
 async function fetchAppointmentshistoryByEmail(email) {
     try {
-        const response = await fetch(`http://backend-p7op.onrender.com/appointments/email/${email}`);
+        const response = await fetch(`https://backend-p7op.onrender.com/appointments/email/${email}`);
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
         }

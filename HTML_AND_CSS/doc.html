@@ -149,7 +149,7 @@
       
       try {
         // Fetch doctor information
-        const response1 = await fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+        const response1 = await fetch('https://backend-p7op.onrender.com/doctors/doctor', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -172,7 +172,7 @@
         const name = doctor.name;
 
         // Fetch appointments for the doctor
-        const response2 = await fetch(`http://backend-p7op.onrender.com/appointments/doctor/${name}`, {
+        const response2 = await fetch(`https://backend-p7op.onrender.com/appointments/doctor/${name}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -221,7 +221,7 @@
       const token = sessionStorage.getItem('accessToken');
 
       try {
-        const response = await fetch(`http://backend-p7op.onrender.com/appointments/${appointmentId}/medical-report`, {
+        const response = await fetch(`https://backend-p7op.onrender.com/appointments/${appointmentId}/medical-report`, {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${token}`,

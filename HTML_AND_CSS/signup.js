@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = document.getElementById('password').value;
 
     try {
-      const response = await fetch('http://backend-p7op.onrender.com/patients/signup', {
+      const response = await fetch('https://backend-p7op.onrender.com/patients/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

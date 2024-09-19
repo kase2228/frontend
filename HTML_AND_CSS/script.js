@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function initializeDoctorDropdown() {
     const doctorSelect = document.getElementById('doctor');
 
-    fetch('http://backend-p7op.onrender.com/doctors/doctor', {
+    fetch('https://backend-p7op.onrender.com/doctors/doctor', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ function handleFormSubmit(event) {
         return;
     }
 
-    fetch('http://backend-p7op.onrender.com/appointments/post', {
+    fetch('https://backend-p7op.onrender.com/appointments/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ function handleFormSubmit(event) {
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData.entries());
     
-        fetch('http://backend-p7op.onrender.com/newsletter/subscribe', {
+        fetch('https://backend-p7op.onrender.com/newsletter/subscribe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
