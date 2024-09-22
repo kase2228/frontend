@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Minilik-Medi-bridge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            text-align: right;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: inline-flex;
+            margin-right: 30px;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        #intro {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('image.png') no-repeat center center/cover;
+            padding: 0 20px;
+        }
+
+        .intro-content h1 {
+            font-size: 9rem;
+            margin-bottom: 20px;
+            color: black;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        .intro-content .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            background-color: #000;
+            border-radius: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px white;
+        }
+
+        .intro-content .button {
+            padding: 10px 20px;
+            background: black;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px white;
+        }
+
+        .intro-content .button:hover {
+            background: #2980b9;
+        }
+
+        #features {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #111;
+        }
+
+        #features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            flex: 1 1 300px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .feature img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .feature h3 {
+            font-size: 1.8rem;
+            margin: 15px 0;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* About Section Styles */
+        #about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #222;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .team-member a {
+            margin: 0 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .team-member a:hover {
+            color: #2980b9;
+        }
+
+        .github-link {
+            display: block;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team-member">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <div class="intro-content">
+            <!-- <img src="cover-image.jpg" alt="Cover Image" class="cover-image"> -->
+            <h1>Minilik MediBridge</h1>
+            <p class="tagline">Connecting Healthcare with Seamless Digital Solutions.</p>
+            <a href="https://frontend-of-the-project.onrender.com" class="button">Launch App</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <img src="appointtt.jpg" alt="Feature 1 Image">
+                <h3>Appointment Booking</h3>
+                <p>Effortlessly book and manage your appointments with our intuitive scheduling system. Choose your preferred date and time, and receive automatic confirmations and reminders.</p>
+            </div>
+
+            <div class="feature">
+                <img src="UsrLOg.jpg" alt="Feature 2 Image">
+                <h3>User Login</h3>
+                <p>Securely access your personal account with our user-friendly login system. Enter your credentials to manage your appointments and view history.</p>
+            </div>
+
+            <div class="feature">
+                <img src="AdminLo.jpg" alt="Feature 3 Image">
+                <h3>Admin Login</h3>
+                <p>Admins can log in to oversee and manage the entire system. Access administrative tools to review appointments and manage users.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About This Project</h2>
+        <p>This project was born out of our collective commitment to enhancing the healthcare experience for both patients and caregivers. We envisioned a solution that would streamline the administrative aspects of healthcare, enabling both healthcare professionals and patients to focus more on diagnosis and treatment rather than dealing with cumbersome procedures. Over several months, what began as a simple idea evolved into a comprehensive digital tool designed to simplify appointment scheduling, user management, and administrative tasks.</p>
+        <p>As part of our portfolio for <a href="https://holbertonschool.com" target="_blank" style="color: #3498db;">Holberton School</a>, this project demonstrates our dedication to leveraging technology to make a meaningful impact in the healthcare sector. It reflects our goal to improve healthcare services by easing operational burdens and enhancing the overall efficiency of healthcare delivery.</p>
+
+        <div class="team" id="team-member">
+            <div class="team-member">
+                <!-- <img src="team-member1.jpg" alt="Team Member 1"> -->
+                <h3>Kassahun Belachew</h3>
+                <a href="https://www.linkedin.com/in/etel-ethiopia-70926a224" target="_blank">LinkedIn</a>
+                <a href="https://github.com/kase2228" target="_blank">GitHub</a>
+                <a href="https://x.com/EtelEthiopia" target="_blank">Twitter</a>
+            </div>
+            <div class="team-member">
+                <!-- <img src="team-member2.jpg" alt="Team Member 2"> -->
+                <h3>Tizita Belachew</h3>
+                <a href="https://www.linkedin.com/in/tizita-belachew-382470292" target="_blank">LinkedIn</a>
+                <a href="https://github.com/tizita1224" target="_blank">GitHub</a>
+                <a href="https://x.com/Tizita16672031" target="_blank">Twitter</a>
+            </div>
+        </div>
+
+        <a href="https://github.com/kase2228/Minilik_MediBridge" class="github-link" target="_blank">View the GitHub Repository</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Minilik MediBridge. All rights reserved.</p>
+    </footer>
+</body>
+</html>
