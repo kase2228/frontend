@@ -1,6 +1,6 @@
+/*Authentication functionality*/
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
-  
   loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
   
