@@ -99,6 +99,7 @@
   <a href="index.html" class="home-button">Home</a>
 </header>
 <body>
+  <!-- Login form container -->
   <div class="form-container">
     <h2>Doctor Login</h2>
     <form id="loginForm">
@@ -113,7 +114,8 @@
   </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
+    /*authentication functionality*/
+    document.addEventListener('DOMContentLoaded', function() {
       const loginForm = document.getElementById('loginForm');
 
       loginForm.addEventListener('submit', async function(event) {

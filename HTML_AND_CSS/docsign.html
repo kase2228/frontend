@@ -73,6 +73,7 @@
   </style>
 </head>
 <body>
+  <!-- Sign up form container -->
   <div class="form-container">
     <h2>Doctor Sign Up</h2>
     <form id="signupForm">
@@ -93,12 +94,13 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem('token'); //Sends new doctors to reception page as new doctors should be signed up after the acknowledment of receptionist
             if (!token) {
                 window.location.href = 'add2log.html';
                 return;
             }
-
+            
+      /*store signed up doctors to the database*/
       const signupForm = document.getElementById('signupForm');
 
       signupForm.addEventListener('submit', async function(event) {

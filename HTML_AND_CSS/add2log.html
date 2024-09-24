@@ -103,6 +103,8 @@
     <header>
         <a href="index.html" class="home-link">Home</a>
     </header>
+
+    <!-- Login form container -->
     <div class="container">
         <form id="codeForm">
             <h2>Admin Login</h2>
@@ -114,6 +116,7 @@
     </div>
 
     <script>
+        /*Authentication functionality*/
         document.getElementById('codeForm').addEventListener('submit', async (event) => {
             event.preventDefault();
             const passcode = document.getElementById('code').value;
