@@ -14,7 +14,14 @@ Providers can manage appointments, view patient records, and communicate with pa
 View and manage appointments: Patients and providers can see both future and past appointments for better scheduling and care management.
 
 Screenshots:
+
 ![Screenshot (538)](https://github.com/user-attachments/assets/53ea3af7-e91b-42aa-952d-4919e3e54ab3)
+
+![Screenshot (536)](https://github.com/user-attachments/assets/7fd48c72-3f08-41da-b3f9-40ebc7389e92)
+
+![Screenshot (539)](https://github.com/user-attachments/assets/f2ecfa13-cc46-4ee1-ae76-e8d9f3c7abaf)
+
+
 
 
 
